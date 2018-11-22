@@ -1,6 +1,9 @@
 package com.coolweather.android.util;
 
+import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.coolweather.android.db.City;
 import com.coolweather.android.db.County;
@@ -82,14 +85,13 @@ public class Utility {
         return false;
     }
 
-    public static Weather handleWeatherResponse(String response){
+    public static Weather handleWeatherResponse(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
             JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
             String weatherContent = jsonArray.getJSONObject(0).toString();
-            return new Gson().fromJson(weatherContent,Weather.class);
-
-        }catch (Exception e){
+            return new Gson().fromJson(weatherContent, Weather.class);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
